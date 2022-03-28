@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/discovery/discovery.iml" filepath="$PROJECT_DIR$/discovery/discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/organization-service/organization-service.iml" filepath="$PROJECT_DIR$/organization-service/organization-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/participant-service/participant-service.iml" filepath="$PROJECT_DIR$/participant-service/participant-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quiz-service/quiz-service.iml" filepath="$PROJECT_DIR$/quiz-service/quiz-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/quiz_microservices.iml" filepath="$PROJECT_DIR$/.idea/quiz_microservices.iml" />
+    </modules>
+  </component>
+</project>
