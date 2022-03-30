@@ -1,4 +1,4 @@
-package uz.maniac4j.organizationservice.payload;
+package uz.maniac4j.participantservice.payload;
 
 import org.springframework.http.HttpEntity;
 

@@ -2,7 +2,6 @@ package uz.maniac4j.organizationservice.organization;
 
 
 import lombok.*;
-import uz.maniac4j.organizationservice.participant.Participant;
 import uz.maniac4j.organizationservice.template.EntityLong;
 import uz.maniac4j.organizationservice.user.User;
 
@@ -20,11 +19,6 @@ import java.util.Set;
 public class Organization extends EntityLong {
     private String name;
     private String description;
-
-
-    @ManyToMany
-    @ToString.Exclude
-    private Set<Participant> participants;
 
 
     @ManyToMany
