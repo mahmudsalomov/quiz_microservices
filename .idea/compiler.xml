@@ -7,8 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="quiz-service" />
         <module name="organization-service" />
+        <module name="quiz-service" />
         <module name="participant-service" />
         <module name="discovery" />
       </profile>
