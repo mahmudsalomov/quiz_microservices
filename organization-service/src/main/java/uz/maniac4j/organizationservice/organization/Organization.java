@@ -19,14 +19,5 @@ import java.util.Set;
 public class Organization extends EntityLong {
     private String name;
     private String description;
-
-
-    @ManyToMany
-    @ToString.Exclude
-    private Set<User> members;
-
     private Long ownerId;
-
-
-
 }

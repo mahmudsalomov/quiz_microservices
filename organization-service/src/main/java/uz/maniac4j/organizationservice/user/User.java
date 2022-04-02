@@ -8,10 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import uz.maniac4j.organizationservice.organization.Organization;
 import uz.maniac4j.organizationservice.template.EntityLong;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Objects;
@@ -49,9 +46,8 @@ public class User extends EntityLong implements UserDetails {
 
 
 
-    @ManyToMany
-    @ToString.Exclude
-    private Set<Organization> organizations;
+    @ManyToOne
+    private Organization organization;
 
 
 

@@ -23,7 +23,7 @@ public class UserService {
         this.emailService = emailService;
     }
 
-    public Response register(User user){
+    public Response<?> register(User user){
         try {
             user.setCode(CodeGenerator.generate());
             user.setActive(false);
@@ -46,7 +46,7 @@ public class UserService {
         }
     }
 
-    public Response activate(String email,String code){
+    public Response<?> activate(String email,String code){
         try {
             Optional<User> optionalUser = userRepository.findByUsername(email);
             if (optionalUser.isPresent()){

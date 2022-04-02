@@ -20,15 +20,14 @@ public class OrganizationService {
         this.userRepository = userRepository;
     }
 
-    public Response getByOwnerUser(User user){
+    public Response<?> getByOwnerUser(User user){
         Optional<Organization> optionalOrganization = organizationRepository.findByOwnerId(user.getId());
         return optionalOrganization.map(Payload::ok).orElseGet(Payload::notFound);
     }
 
-    public Response create(Organization organization, User user){
+    public Response<?> create(Organization organization, User user){
         try {
             organization.setOwnerId(user.getId());
-            organization.setMembers(Collections.singleton(user));
             organization = organizationRepository.save(organization);
             return Payload.ok("Organization created!",organization);
         }catch (Exception e){
