@@ -22,11 +22,12 @@ public class ParticipantService {
 
 
     // Add new participant
-    public Response<?> create(ParticipantDto dto){
+    public ParticipantDto create(ParticipantDto dto){
+        if (participantRepository.existsByUsername(dto.getUsername())) return null;
         Participant participant = Converter.toParticipant(dto);
         participant.setPassword(passwordEncoder.encode(dto.getPassword()));
-        participantRepository.save(participant);
-        return Payload.ok(participant);
+        participant=participantRepository.save(participant);
+        return Converter.toParticipantDto(participant);
     }
 
 

@@ -16,6 +16,7 @@ public class OrganizationServiceApplication {
         SpringApplication.run(OrganizationServiceApplication.class, args);
     }
 
+
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate(){

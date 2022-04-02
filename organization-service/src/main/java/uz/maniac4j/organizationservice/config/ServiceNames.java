@@ -6,22 +6,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties("service")
 public class ServiceNames {
-    private String participantService;
-    private String quizService;
+    private String quiz;
+    private String participant;
 
-    public String getParticipantService() {
-        return "http://"+participantService;
+    public String getQuiz() {
+        return "http://"+quiz;
     }
 
-    public void setParticipantService(String participantService) {
-        this.participantService = participantService;
+    public void setQuiz(String quiz) {
+        this.quiz = quiz;
     }
 
-    public String getQuizService() {
-        return "http://"+quizService;
+    public String getParticipant() {
+        return "http://"+participant;
     }
 
-    public void setQuizService(String quizService) {
-        this.quizService = quizService;
+    public void setParticipant(String participant) {
+        this.participant = participant;
     }
+
 }

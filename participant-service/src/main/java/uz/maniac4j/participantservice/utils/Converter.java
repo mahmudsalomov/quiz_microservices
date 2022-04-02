@@ -24,4 +24,16 @@ public class Converter {
                 .build();
     }
 
+    public static ParticipantDto toParticipantDto(Participant participant){
+        return ParticipantDto
+                .builder()
+                .organizationId(participant.getOrganizationId())
+                .active(participant.isActive())
+                .email(participant.getEmail())
+                .fio(participant.getFio())
+                .username(participant.getUsername())
+                .phone(participant.getPhone())
+                .build();
+    }
+
 }

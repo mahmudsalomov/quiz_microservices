@@ -28,11 +28,17 @@ public class OrganizationService {
     // Create Organization
     public Response<?> create(Organization organization, User user){
         try {
+            Optional<User> byUsername = userRepository.findByUsername(user.getUsername());
+            if (byUsername.isEmpty()) return Payload.badRequest();
+            user=byUsername.get();
             System.out.println("ORGANIZATION");
             organization.setOwnerId(user.getId());
             System.out.println(organization);
             System.out.println(user);
+
             organization = organizationRepository.save(organization);
+            user.setOrganization(organization);
+            user=userRepository.save(user);
             return Payload.ok("Organization created!",organization);
         }catch (Exception e){
             e.printStackTrace();

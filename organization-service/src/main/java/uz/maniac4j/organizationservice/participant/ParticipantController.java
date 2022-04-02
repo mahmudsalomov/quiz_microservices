@@ -1,8 +1,10 @@
 package uz.maniac4j.organizationservice.participant;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpEntity;
+import org.springframework.web.bind.annotation.*;
 import uz.maniac4j.organizationservice.organization.OrganizationRepository;
+import uz.maniac4j.organizationservice.security.CurrentUser;
+import uz.maniac4j.organizationservice.user.User;
 import uz.maniac4j.organizationservice.user.UserRepository;
 
 @RequestMapping("api/organization/participant")
@@ -11,12 +13,23 @@ public class ParticipantController {
 
     private final OrganizationRepository organizationRepository;
     private final UserRepository userRepository;
+    private final ParticipantService participantService;
 
 
-    public ParticipantController(OrganizationRepository organizationRepository, UserRepository userRepository) {
+    public ParticipantController(OrganizationRepository organizationRepository, UserRepository userRepository, ParticipantService participantService) {
         this.organizationRepository = organizationRepository;
         this.userRepository = userRepository;
+        this.participantService = participantService;
     }
 
+    @PostMapping("/create")
+    public HttpEntity<?> create(@RequestBody ParticipantDto dto, @CurrentUser User user){
+        return participantService.createNewParticipant(dto, user).response();
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return participantService.test();
+    }
 
 }
