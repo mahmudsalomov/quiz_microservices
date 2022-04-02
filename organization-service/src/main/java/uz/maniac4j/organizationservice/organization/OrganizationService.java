@@ -25,9 +25,13 @@ public class OrganizationService {
         return optionalOrganization.map(Payload::ok).orElseGet(Payload::notFound);
     }
 
+    // Create Organization
     public Response<?> create(Organization organization, User user){
         try {
+            System.out.println("ORGANIZATION");
             organization.setOwnerId(user.getId());
+            System.out.println(organization);
+            System.out.println(user);
             organization = organizationRepository.save(organization);
             return Payload.ok("Organization created!",organization);
         }catch (Exception e){
