@@ -16,7 +16,7 @@ public class CategoryController {
         this.service = service;
     }
 
-    @GetMapping("/one{id}")
+    @GetMapping("/one/{id}")
     public Category one(@PathVariable("id") Long id){
         return service.one(id);
     }
@@ -36,7 +36,7 @@ public class CategoryController {
         return service.edit(category);
     }
 
-    @PostMapping("/delete{id}")
+    @PostMapping("/delete/{id}")
     public void delete(@PathVariable("id") Long id){
         service.delete(id);
     }

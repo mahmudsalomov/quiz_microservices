@@ -2,9 +2,17 @@ package uz.maniac4j.quizservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.maniac4j.quizservice.dto.AnswerDto;
+import uz.maniac4j.quizservice.dto.AnswerDtoImpl;
+import uz.maniac4j.quizservice.dto.QuizDto;
+import uz.maniac4j.quizservice.model.Answer;
+import uz.maniac4j.quizservice.model.Category;
 import uz.maniac4j.quizservice.model.Quiz;
+import uz.maniac4j.quizservice.repository.AnswerRepository;
+import uz.maniac4j.quizservice.repository.CategoryRepository;
 import uz.maniac4j.quizservice.repository.QuizRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,23 +20,56 @@ import java.util.Optional;
 public class QuizService {
 
     private final QuizRepository quizRepository;
+    private final CategoryRepository categoryRepository;
+    private final AnswerRepository answerRepository;
 
     @Autowired
-    public QuizService(QuizRepository quizRepository) {
+    public QuizService(QuizRepository quizRepository, CategoryRepository categoryRepository, AnswerRepository answerRepository) {
         this.quizRepository = quizRepository;
+        this.categoryRepository = categoryRepository;
+        this.answerRepository = answerRepository;
     }
 
     public Quiz one(Long id){
-        return quizRepository.getById(id);
+        Optional<Quiz> quiz = quizRepository.findById(id);
+        return quiz.orElse(null);
     }
 
     public List<Quiz> all(){
         return quizRepository.findAll();
     }
 
-    public Quiz add(Quiz quiz){
-        if (quiz.getId() == null) return null;
-        return quizRepository.save(quiz);
+    public Quiz add(QuizDto dto){
+        try {
+            Optional<Category> category = categoryRepository.findById(dto.getCategory().getId());
+            if (category.isEmpty()) return null;
+            Quiz quiz = Quiz
+                    .builder()
+                    .rate(dto.getRate())
+                    .title(dto.getTitle())
+                    .text(dto.getText())
+                    .category(category.get())
+                    .build();
+            quiz = quizRepository.save(quiz);
+
+            for (AnswerDtoImpl answerDto:dto.getAnswers()) {
+                Answer answer = Answer
+                        .builder()
+                        .quiz(quiz)
+                        .text(answerDto.getText())
+                        .build();
+                answer=answerRepository.save(answer);
+                if (answerDto.isRight()) {
+                    quiz.setRight_answer_id(answer.getId());
+                    quiz = quizRepository.save(quiz);
+                }
+            }
+
+            return quiz;
+        }catch (Exception e){
+            return null;
+        }
+
     }
 
     public void delete(Long id){

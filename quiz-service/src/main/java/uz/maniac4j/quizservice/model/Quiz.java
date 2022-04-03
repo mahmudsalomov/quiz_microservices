@@ -15,7 +15,6 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-@Builder
 @Entity
 public class Quiz extends EntityLong{
 
@@ -32,6 +31,7 @@ public class Quiz extends EntityLong{
     @ToString.Exclude
     private Set<Block> blocks;
 
+    @Builder
     public Quiz(Long id, Timestamp createdAt, boolean deleted, String title, String text, Long right_answer_id, int rate, Category category, Set<Block> blocks) {
         super(id, createdAt, deleted);
         this.title = title;
@@ -42,14 +42,6 @@ public class Quiz extends EntityLong{
         this.blocks = blocks;
     }
 
-    public Quiz(String title, String text, Long right_answer_id, int rate, Category category, Set<Block> blocks) {
-        this.title = title;
-        this.text = text;
-        this.right_answer_id = right_answer_id;
-        this.rate = rate;
-        this.category = category;
-        this.blocks = blocks;
-    }
 
     public void editing(Quiz quiz){
         title = quiz.title;

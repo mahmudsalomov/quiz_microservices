@@ -1,6 +1,7 @@
 package uz.maniac4j.quizservice.controller;
 
 import org.springframework.web.bind.annotation.*;
+import uz.maniac4j.quizservice.dto.QuizDto;
 import uz.maniac4j.quizservice.model.Quiz;
 import uz.maniac4j.quizservice.service.QuizService;
 
@@ -21,17 +22,23 @@ public class QuizController {
         return service.all();
     }
 
-    @GetMapping("/one{id}")
+    @GetMapping("/one/{id}")
     public Quiz one(@PathVariable("id") Long id){
         return service.one(id);
     }
 
+
+
+
     @PostMapping("/add")
-    public Quiz addQuiz(@RequestBody Quiz quiz){
-        return service.add(quiz);
+    public Quiz addQuiz(@RequestBody QuizDto dto){
+        return service.add(dto);
     }
 
-    @PostMapping("/delete{id}")
+
+
+
+    @PostMapping("/delete/{id}")
     public void deleteQuiz(@PathVariable("id") Long id){
          service.delete(id);
     }

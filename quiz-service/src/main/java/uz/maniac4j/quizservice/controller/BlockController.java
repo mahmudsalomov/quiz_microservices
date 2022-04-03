@@ -16,7 +16,7 @@ public class BlockController {
         this.service = service;
     }
 
-    @GetMapping("/one{id}")
+    @GetMapping("/one/{id}")
     public Block one(@PathVariable("id") Long id){
         return service.one(id);
     }
@@ -31,7 +31,7 @@ public class BlockController {
         return service.add(block);
     }
 
-    @PostMapping("/delete{id}")
+    @PostMapping("/delete/{id}")
     public void deleteBlock(@PathVariable("id") Long id){
         service.delete(id);
     }

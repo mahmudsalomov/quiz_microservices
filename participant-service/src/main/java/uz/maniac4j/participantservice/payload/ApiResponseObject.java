@@ -7,6 +7,11 @@ import org.springframework.http.ResponseEntity;
 public class ApiResponseObject<T>extends ApiResponse<T> {
     private T object;
 
+
+    public ApiResponseObject(T object) {
+        this.object = object;
+    }
+
     public ApiResponseObject(String message, boolean success, T object) {
         super(message, success);
         this.object = object;
@@ -24,6 +29,11 @@ public class ApiResponseObject<T>extends ApiResponse<T> {
 
     public ApiResponseObject(String message, boolean success, HttpStatus status, T object) {
         super(message, success,status);
+        this.object = object;
+    }
+
+    public ApiResponseObject(String message, boolean success, HttpStatus status, long totalElements, long totalPages, long page, T object) {
+        super(message, success, status, totalElements, totalPages, page);
         this.object = object;
     }
 

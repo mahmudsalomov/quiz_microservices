@@ -38,9 +38,30 @@ public class FirstRunner implements CommandLineRunner {
                     .password(passwordEncoder.encode("admin"))
                     .build();
             userRepository.save(admin);
-            if (!roleRepository.existsByRoleName(RoleName.ORGANIZATION_ADMIN)){
-                Role roleOrganizationAdmin = roleRepository.save(Role.builder().roleName(RoleName.ORGANIZATION_ADMIN).build());
-            }
+//            if (!roleRepository.existsByRoleName(RoleName.ORGANIZATION_ADMIN)){
+//                Role roleOrganizationAdmin = roleRepository.save(Role.builder().roleName(RoleName.ORGANIZATION_ADMIN).build());
+//            }
+        }
+
+
+
+        if (!userRepository.existsByUsername("user")&! roleRepository.existsByRoleName(RoleName.ORGANIZATION_ADMIN)){
+
+            Role roleUser = roleRepository.save(Role.builder().roleName(RoleName.ORGANIZATION_ADMIN).build());
+
+            User admin= User
+                    .builder()
+                    .active(true)
+                    .fio("user")
+                    .roles(Collections.singleton(roleUser))
+                    .email("user@gmail.com")
+                    .username("user")
+                    .password(passwordEncoder.encode("user"))
+                    .build();
+            userRepository.save(admin);
+//            if (!roleRepository.existsByRoleName(RoleName.ORGANIZATION_ADMIN)){
+//                Role roleOrganizationAdmin = roleRepository.save(Role.builder().roleName(RoleName.ORGANIZATION_ADMIN).build());
+//            }
         }
     }
 }

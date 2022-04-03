@@ -110,7 +110,7 @@ public class ApiResponse<T> implements Response<T>{
         this.page = page;
     }
 
-    public ApiResponse get(){
+    public ApiResponse<T> get(){
         return this;
     }
 }
