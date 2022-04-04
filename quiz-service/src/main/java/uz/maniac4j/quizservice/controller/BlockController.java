@@ -1,6 +1,7 @@
 package uz.maniac4j.quizservice.controller;
 
 import org.springframework.web.bind.annotation.*;
+import uz.maniac4j.quizservice.dto.BlockDto;
 import uz.maniac4j.quizservice.model.Block;
 import uz.maniac4j.quizservice.service.BlockService;
 
@@ -29,6 +30,12 @@ public class BlockController {
     @PostMapping("/add")
     public Block addBlock(@RequestBody Block block){
         return service.add(block);
+    }
+
+
+    @PostMapping("/add/custom")
+    public Block addBlockCustom(@RequestBody BlockDto dto){
+        return service.add(dto);
     }
 
     @PostMapping("/delete/{id}")

@@ -1,4 +1,4 @@
-package uz.maniac4j.quizservice.model;
+package uz.maniac4j.organizationservice.quiz.model;
 
 import lombok.*;
 
@@ -13,14 +13,9 @@ import java.util.Set;
 @Entity
 public class Block extends EntityLong{
     private String name;
-    @Column(columnDefinition = "text")
     private String description;
 
-    @ManyToMany
-    @ToString.Exclude
     private Set<Quiz> quizzes;
-
-    @Enumerated(EnumType.STRING)
     private BlockType type;
 
     private boolean active=false;
