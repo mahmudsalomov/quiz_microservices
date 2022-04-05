@@ -47,4 +47,10 @@ public class BlockController {
     public Block editBlock(@RequestBody Block block){
         return service.edit(block);
     }
+
+
+    @GetMapping("/existsByBlockAndOrganization/{block_id}/{organization_id}")
+    public Boolean existsByBlockAndOrganization(@PathVariable long block_id, @PathVariable long organization_id){
+        return service.existsByBlockAndOrganization(block_id, organization_id);
+    }
 }

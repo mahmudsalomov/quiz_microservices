@@ -64,6 +64,7 @@ public class BlockService {
                 .quizzes(quizzes)
                 .active(dto.isActive())
                 .limit(dto.getLimit())
+                .organization_id(dto.getOrganization_id())
                 .build();
         return blocksRepository.save(block);
     }
@@ -85,6 +86,14 @@ public class BlockService {
             return blocksRepository.save(block);
         }
         return null;
+    }
+
+
+    // Check block id and organization id is exists
+    public boolean existsByBlockAndOrganization(long block_id, long organization_id){
+        Optional<Block> optionalBlock = blocksRepository.findById(block_id);
+        if (optionalBlock.isEmpty()) return false;
+        return optionalBlock.get().getOrganization_id() == organization_id;
     }
 
 }

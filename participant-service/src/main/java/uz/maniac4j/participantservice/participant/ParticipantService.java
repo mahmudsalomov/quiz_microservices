@@ -85,6 +85,13 @@ public class ParticipantService {
 
 
 
+    // check participant id and organization id is exists
+    public boolean existsByParticipantAndOrganization(long participant_id, long organization_id){
+        Optional<Participant> optionalParticipant = participantRepository.findById(participant_id);
+        if (optionalParticipant.isEmpty()) return false;
+        return optionalParticipant.get().getOrganizationId()==organization_id;
+    }
+
 
 
 }

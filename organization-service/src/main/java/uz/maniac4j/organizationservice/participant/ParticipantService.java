@@ -27,7 +27,6 @@ public class ParticipantService {
 
 
     public Response<?> createNewParticipant(ParticipantDto dto,User user){
-
         Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
         if (optionalUser.isEmpty()) return Payload.badRequest();
         user=optionalUser.get();

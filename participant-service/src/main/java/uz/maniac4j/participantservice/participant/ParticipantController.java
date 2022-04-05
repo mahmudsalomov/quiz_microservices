@@ -50,4 +50,9 @@ public class ParticipantController {
     public Boolean deactivate(@PathVariable Long id){
         return participantService.deactivate(id);
     }
+
+    @GetMapping("/existsByParticipantAndOrganization/{participant_id}/{organization_id}")
+    public Boolean existsByParticipantAndOrganization(@PathVariable long participant_id, @PathVariable long organization_id){
+        return participantService.existsByParticipantAndOrganization(participant_id, organization_id);
+    }
 }
