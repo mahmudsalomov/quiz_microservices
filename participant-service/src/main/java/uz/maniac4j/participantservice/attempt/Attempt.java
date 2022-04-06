@@ -5,6 +5,7 @@ import uz.maniac4j.participantservice.attempt_answer.AttemptAnswer;
 import uz.maniac4j.participantservice.participant.Participant;
 import uz.maniac4j.participantservice.template.EntityLong;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,7 +21,8 @@ import java.util.Set;
 @Entity
 public class Attempt extends EntityLong {
 
-    private Long opb_id;
+    @Column(unique = true)
+    private Long opbId;
 
     @ManyToOne
     private Participant participant;

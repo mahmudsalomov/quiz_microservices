@@ -3,6 +3,8 @@ package uz.maniac4j.participantservice.attempt;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AttemptRepository extends JpaRepository<Attempt,Long> {
+import java.util.Optional;
 
+public interface AttemptRepository extends JpaRepository<Attempt,Long> {
+    Optional<Attempt> findByOpbId(long id);
 }
