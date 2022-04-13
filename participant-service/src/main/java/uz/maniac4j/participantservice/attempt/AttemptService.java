@@ -82,22 +82,22 @@ public class AttemptService {
     }
 
 
-
-    public Response<?> stop(long opb_id, @CurrentUser Participant participant){
-        Optional<Participant> optionalParticipant = participantRepository.findByUsername(participant.getUsername());
-        if (optionalParticipant.isEmpty()) return Payload.notFound();
-
-
-
-
-    }
-
-
-
-    public boolean isEnd(long opbId){
-        Optional<Attempt> optionalAttempt = attemptRepository.findByOpbId(opbId);
-        if (optionalAttempt.isPresent()){
-            optionalAttempt.
-        }
-    }
+//
+//    public Response<?> stop(long opb_id, @CurrentUser Participant participant){
+//        Optional<Participant> optionalParticipant = participantRepository.findByUsername(participant.getUsername());
+//        if (optionalParticipant.isEmpty()) return Payload.notFound();
+//
+//
+//
+//
+//    }
+//
+//
+//
+//    public boolean isEnd(long opbId){
+//        Optional<Attempt> optionalAttempt = attemptRepository.findByOpbId(opbId);
+//        if (optionalAttempt.isPresent()){
+//            optionalAttempt.
+//        }
+//    }
 }

@@ -18,7 +18,7 @@ public class Category extends EntityLong{
     @Column(columnDefinition = "text")
     private String description;
     @NotNull
-    @Column(unique = true)
+//    @Column(unique = true)
     private Long organization_id;
 
 

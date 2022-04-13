@@ -27,7 +27,7 @@ public class Block extends EntityLong{
 
 
     // Seconds
-    private long limit;
+    private long timeLimit;
 
     private Long organization_id;
 
@@ -40,7 +40,7 @@ public class Block extends EntityLong{
         this.quizzes = quizzes;
         this.type = type;
         this.active = active;
-        this.limit = limit;
+        this.timeLimit = limit;
         this.organization_id = organization_id;
     }
 
@@ -50,7 +50,7 @@ public class Block extends EntityLong{
         this.quizzes = quizzes;
         this.type = type;
         this.active = active;
-        this.limit = limit;
+        this.timeLimit = limit;
         this.organization_id = organization_id;
     }
 

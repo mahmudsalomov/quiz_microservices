@@ -24,4 +24,4 @@ public class QuizServiceApplication {
         return new RestTemplate(httpRequestFactory);
     }
 }
-}
+
