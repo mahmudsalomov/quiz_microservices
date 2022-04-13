@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/participant-service/participant-service.iml" filepath="$PROJECT_DIR$/participant-service/participant-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/quiz-service/quiz-service.iml" filepath="$PROJECT_DIR$/quiz-service/quiz-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/quiz_microservices.iml" filepath="$PROJECT_DIR$/.idea/quiz_microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quiz-ui/quizui.iml" filepath="$PROJECT_DIR$/quiz-ui/quizui.iml" />
     </modules>
   </component>
 </project>

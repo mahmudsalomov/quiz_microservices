@@ -10,6 +10,7 @@
         <module name="quiz-service" />
         <module name="organization-service" />
         <module name="participant-service" />
+        <module name="quizui" />
         <module name="discovery" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,9 @@
       <module name="participant" target="1.5" />
       <module name="participant-service" target="17" />
       <module name="quiz-service" target="17" />
+      <module name="quiz-ui" target="17" />
+      <module name="quiz_ui" target="17" />
+      <module name="quizui" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -27,6 +31,9 @@
       <module name="organization-service" options="-parameters" />
       <module name="participant-service" options="-parameters" />
       <module name="quiz-service" options="-parameters" />
+      <module name="quiz-ui" options="-parameters" />
+      <module name="quiz_ui" options="-parameters" />
+      <module name="quizui" options="-parameters" />
     </option>
   </component>
 </project>
