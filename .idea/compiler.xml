@@ -7,15 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="participant-service" />
+        <module name="hystrix" />
+        <module name="discovery" />
         <module name="quiz-service" />
         <module name="organization-service" />
-        <module name="participant-service" />
+        <module name="gateway-server" />
         <module name="quizui" />
-        <module name="discovery" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="config-server" target="17" />
       <module name="discovery" target="17" />
+      <module name="gateway-server" target="17" />
+      <module name="hystrix" target="17" />
       <module name="organization-service" target="17" />
       <module name="participant" target="1.5" />
       <module name="participant-service" target="17" />
@@ -27,7 +33,10 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="gateway-server" options="-parameters" />
+      <module name="hystrix" options="-parameters" />
       <module name="organization-service" options="-parameters" />
       <module name="participant-service" options="-parameters" />
       <module name="quiz-service" options="-parameters" />
