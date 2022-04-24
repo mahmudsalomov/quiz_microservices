@@ -7,7 +7,7 @@ import uz.maniac4j.quizservice.service.CategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/category")
+@RequestMapping("api/quiz/category")
 public class CategoryController {
 
     private final CategoryService service;

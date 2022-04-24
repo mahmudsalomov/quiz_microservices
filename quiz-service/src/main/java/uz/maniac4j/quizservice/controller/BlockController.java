@@ -8,7 +8,7 @@ import uz.maniac4j.quizservice.service.BlockService;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/block")
+@RequestMapping("api/quiz/block")
 public class BlockController {
 
     private final BlockService service;

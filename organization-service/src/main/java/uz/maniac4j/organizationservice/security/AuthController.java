@@ -8,7 +8,7 @@ import uz.maniac4j.organizationservice.user.User;
 
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/organization/auth")
 @CrossOrigin
 public class AuthController {
     @Autowired

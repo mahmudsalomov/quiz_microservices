@@ -8,7 +8,7 @@ import uz.maniac4j.quizservice.service.AnswerService;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/answer")
+@RequestMapping("api//quiz/answer")
 public class AnswerContoller{
 
     private final AnswerService service;

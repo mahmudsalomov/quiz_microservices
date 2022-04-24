@@ -8,7 +8,7 @@ import uz.maniac4j.participantservice.participant.Participant;
 
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/participant/auth")
 @CrossOrigin
 public class AuthController {
     @Autowired

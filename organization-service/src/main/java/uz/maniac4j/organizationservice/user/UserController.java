@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import uz.maniac4j.organizationservice.security.CurrentUser;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/organization/user")
 public class UserController {
 
     private final UserService userService;
