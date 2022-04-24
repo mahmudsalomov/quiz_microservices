@@ -10,7 +10,7 @@
     </parent>
     <groupId>uz.maniac4j</groupId>
     <artifactId>organization-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>organization-service</name>
     <description>organization-service</description>
     <properties>

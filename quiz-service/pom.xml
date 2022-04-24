@@ -10,7 +10,7 @@
     </parent>
     <groupId>uz.maniac4j</groupId>
     <artifactId>quiz-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>quiz-service</name>
     <description>quiz-service</description>
     <properties>

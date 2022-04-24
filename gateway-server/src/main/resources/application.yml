@@ -8,7 +8,7 @@ management:
       show-details: always
 
 
-#spring:
+spring:
 #  cloud:
 #    gateway:
 #      routes:
