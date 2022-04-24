@@ -1,0 +1,50 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: quiz-service
+#          uri: lb://QUIZ-SERVICE
+#          predicates: Path=/api/quiz/**
+##          filters:
+##          - name: CircuitBreaker
+##            args:
+##              name: quiz-service
+##              fallbackUri:  forward:/quizFallback
+#
+#        - id: organization-service
+#          uri: lb://ORGANIZATION-SERVICE
+#          predicates: Path=/api/organization/**
+##          filters:
+##            - name: CircuitBreaker
+##              args:
+##                name: organization-service
+##                fallbackUri: forward:/organizationFallback
+#
+#        - id: participant-service
+#          uri: lb://PARTICIPANT-SERVICE
+#          predicates: Path=/api/participant/**
+##          filters:
+##            - name: CircuitBreaker
+##              args:
+##                name: participant-service
+##                fallbackUri: forward:/participantFallback
+
+
+  application:
+    name: gateway-service
+  boot:
+    admin:
+      client:
+        url: http://localhost:8761/admin
+server:
+  port: '8085'

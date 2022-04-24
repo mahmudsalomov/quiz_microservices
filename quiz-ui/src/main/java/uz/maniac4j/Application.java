@@ -8,6 +8,11 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * The entry point of the Spring Boot application.
@@ -20,10 +25,19 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @Theme(value = "quiz-ui", variant = Lumo.DARK)
 @PWA(name = "quiz-ui", shortName = "quiz-ui", offlineResources = {})
 @NpmPackage(value = "line-awesome", version = "1.3.0")
+@EnableEurekaClient
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate getRestTemplate(){
+        HttpComponentsClientHttpRequestFactory httpRequestFactory=new HttpComponentsClientHttpRequestFactory();
+        httpRequestFactory.setConnectTimeout(3000);
+        return new RestTemplate(httpRequestFactory);
     }
 
 }
