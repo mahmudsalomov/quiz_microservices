@@ -20,14 +20,14 @@ import uz.maniac4j.views.about.AboutView;
 import uz.maniac4j.views.block.BlockView;
 import uz.maniac4j.views.blockquizzes.BlockQuizzesView;
 import uz.maniac4j.views.category.CategoryView;
+import uz.maniac4j.views.notification.NotificationView;
+import uz.maniac4j.views.organization.OrganizationView;
 import uz.maniac4j.views.participant.ParticipantView;
 import uz.maniac4j.views.participantblock.ParticipantBlockView;
-import uz.maniac4j.views.participantblockdetails.ParticipantBlockDetailsView;
 import uz.maniac4j.views.quiz.QuizView;
-import uz.maniac4j.views.settings.SettingsView;
-import uz.maniac4j.views.user.UserView;
+import uz.maniac4j.views.testproccess.TestProccessView;
 import uz.maniac4j.views.userblockdetails.UserBlockDetailsView;
-import uz.maniac4j.views.usertest.UserTestView;
+import uz.maniac4j.views.userblocklist.UserBlockListView;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -97,7 +97,7 @@ public class MainLayout extends AppLayout {
     }
 
     private Component createDrawerContent() {
-        H2 appName = new H2("Quiz UI");
+        H2 appName = new H2("quiz-ui");
         appName.addClassNames("app-name");
 
         com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appName,
@@ -125,6 +125,8 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
+                new MenuItemInfo("Organization", "la la-map-marker", OrganizationView.class), //
+
                 new MenuItemInfo("Category", "la la-columns", CategoryView.class), //
 
                 new MenuItemInfo("Quiz", "la la-columns", QuizView.class), //
@@ -135,19 +137,17 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("Participant", "la la-columns", ParticipantView.class), //
 
-                new MenuItemInfo("Participant Block", "la la-th-list", ParticipantBlockView.class), //
+                new MenuItemInfo("Participant Block", "la la-columns", ParticipantBlockView.class), //
 
-                new MenuItemInfo("Participant Block Details", "la la-list", ParticipantBlockDetailsView.class), //
-
-                new MenuItemInfo("Settings", "la la-user", SettingsView.class), //
-
-                new MenuItemInfo("User", "la la-th-list", UserView.class), //
-
-                new MenuItemInfo("User Block Details", "la la-list", UserBlockDetailsView.class), //
-
-                new MenuItemInfo("User Test", "la la-file", UserTestView.class), //
+                new MenuItemInfo("Notification", "la la-list", NotificationView.class), //
 
                 new MenuItemInfo("About", "la la-file", AboutView.class), //
+
+                new MenuItemInfo("User Block List", "la la-th-list", UserBlockListView.class), //
+
+                new MenuItemInfo("User Block Details", "la la-globe", UserBlockDetailsView.class), //
+
+                new MenuItemInfo("Test Proccess", "la la-list", TestProccessView.class), //
 
         };
     }

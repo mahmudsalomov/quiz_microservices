@@ -1,4 +1,4 @@
-package uz.maniac4j.views.user;
+package uz.maniac4j.views.userblocklist;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
@@ -6,9 +6,9 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 
-public class UserViewCard extends ListItem {
+public class UserBlockListViewCard extends ListItem {
 
-    public UserViewCard(String text, String url) {
+    public UserBlockListViewCard(String text, String url) {
         addClassNames("bg-contrast-5", "flex", "flex-col", "items-start", "p-m", "rounded-l");
 
         Div div = new Div();

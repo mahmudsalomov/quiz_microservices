@@ -1,4 +1,4 @@
-# Quiz UI
+# quiz-ui
 
 This project can be used as a starting point to create your own Vaadin application with Spring Boot.
 It contains all the necessary configuration and some placeholder files to get you started.
@@ -21,7 +21,7 @@ This will build a JAR file with all the dependencies and front-end resources,
 ready to be deployed. The file can be found in the `target` folder after the build completes.
 
 Once the JAR file is built, you can run it using
-`java -jar target/quizui-1.0-SNAPSHOT.jar`
+`java -jar target/quiz-ui-1.0-SNAPSHOT.jar`
 
 ## Project structure
 
@@ -45,3 +45,18 @@ Once the JAR file is built, you can run it using
 - Find Add-ons at [vaadin.com/directory](https://vaadin.com/directory).
 - Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
 - Report issues, create pull requests in [GitHub](https://github.com/vaadin/platform).
+
+
+## Deploying using Docker
+
+To build the Dockerized version of the project, run
+
+```
+docker build . -t quiz-ui:latest
+```
+
+Once the Docker image is correctly built, you can test it locally using
+
+```
+docker run -p 8080:8080 quiz-ui:latest
+```

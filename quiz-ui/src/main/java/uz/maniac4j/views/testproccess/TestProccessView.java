@@ -1,4 +1,4 @@
-package uz.maniac4j.views.participantblockdetails;
+package uz.maniac4j.views.testproccess;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
@@ -17,14 +17,14 @@ import java.util.Arrays;
 import java.util.List;
 import uz.maniac4j.views.MainLayout;
 
-@PageTitle("Participant Block Details")
-@Route(value = "Participant-block-details", layout = MainLayout.class)
-public class ParticipantBlockDetailsView extends Div implements AfterNavigationObserver {
+@PageTitle("Test Proccess")
+@Route(value = "test-proccess", layout = MainLayout.class)
+public class TestProccessView extends Div implements AfterNavigationObserver {
 
     Grid<Person> grid = new Grid<>();
 
-    public ParticipantBlockDetailsView() {
-        addClassName("participant-block-details-view");
+    public TestProccessView() {
+        addClassName("test-proccess-view");
         setSizeFull();
         grid.setHeight("100%");
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);

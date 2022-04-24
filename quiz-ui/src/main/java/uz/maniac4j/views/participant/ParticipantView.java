@@ -28,40 +28,41 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import uz.maniac4j.data.entity.SamplePerson;
-import uz.maniac4j.data.service.SamplePersonService;
+import uz.maniac4j.data.entity.Participant;
+import uz.maniac4j.data.service.ParticipantService;
 import uz.maniac4j.views.MainLayout;
 
 @PageTitle("Participant")
-@Route(value = "participant/:samplePersonID?/:action?(edit)", layout = MainLayout.class)
+@Route(value = "participant/:participantID?/:action?(edit)", layout = MainLayout.class)
 @Uses(Icon.class)
 public class ParticipantView extends Div implements BeforeEnterObserver {
 
-    private final String SAMPLEPERSON_ID = "samplePersonID";
-    private final String SAMPLEPERSON_EDIT_ROUTE_TEMPLATE = "participant/%s/edit";
+    private final String PARTICIPANT_ID = "participantID";
+    private final String PARTICIPANT_EDIT_ROUTE_TEMPLATE = "participant/%s/edit";
 
-    private Grid<SamplePerson> grid = new Grid<>(SamplePerson.class, false);
+    private Grid<Participant> grid = new Grid<>(Participant.class, false);
 
     private TextField firstName;
     private TextField lastName;
     private TextField email;
     private TextField phone;
     private DatePicker dateOfBirth;
-    private TextField occupation;
-    private Checkbox important;
+    private TextField username;
+    private TextField password;
+    private Checkbox active;
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
-    private BeanValidationBinder<SamplePerson> binder;
+    private BeanValidationBinder<Participant> binder;
 
-    private SamplePerson samplePerson;
+    private Participant participant;
 
-    private final SamplePersonService samplePersonService;
+    private final ParticipantService participantService;
 
     @Autowired
-    public ParticipantView(SamplePersonService samplePersonService) {
-        this.samplePersonService = samplePersonService;
+    public ParticipantView(ParticipantService participantService) {
+        this.participantService = participantService;
         addClassNames("participant-view");
 
         // Create UI
@@ -78,17 +79,18 @@ public class ParticipantView extends Div implements BeforeEnterObserver {
         grid.addColumn("email").setAutoWidth(true);
         grid.addColumn("phone").setAutoWidth(true);
         grid.addColumn("dateOfBirth").setAutoWidth(true);
-        grid.addColumn("occupation").setAutoWidth(true);
-        LitRenderer<SamplePerson> importantRenderer = LitRenderer.<SamplePerson>of(
+        grid.addColumn("username").setAutoWidth(true);
+        grid.addColumn("password").setAutoWidth(true);
+        LitRenderer<Participant> activeRenderer = LitRenderer.<Participant>of(
                 "<vaadin-icon icon='vaadin:${item.icon}' style='width: var(--lumo-icon-size-s); height: var(--lumo-icon-size-s); color: ${item.color};'></vaadin-icon>")
-                .withProperty("icon", important -> important.isImportant() ? "check" : "minus").withProperty("color",
-                        important -> important.isImportant()
+                .withProperty("icon", active -> active.isActive() ? "check" : "minus").withProperty("color",
+                        active -> active.isActive()
                                 ? "var(--lumo-primary-text-color)"
                                 : "var(--lumo-disabled-text-color)");
 
-        grid.addColumn(importantRenderer).setHeader("Important").setAutoWidth(true);
+        grid.addColumn(activeRenderer).setHeader("Active").setAutoWidth(true);
 
-        grid.setItems(query -> samplePersonService.list(
+        grid.setItems(query -> participantService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
@@ -96,7 +98,7 @@ public class ParticipantView extends Div implements BeforeEnterObserver {
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                UI.getCurrent().navigate(String.format(SAMPLEPERSON_EDIT_ROUTE_TEMPLATE, event.getValue().getId()));
+                UI.getCurrent().navigate(String.format(PARTICIPANT_EDIT_ROUTE_TEMPLATE, event.getValue().getId()));
             } else {
                 clearForm();
                 UI.getCurrent().navigate(ParticipantView.class);
@@ -104,7 +106,7 @@ public class ParticipantView extends Div implements BeforeEnterObserver {
         });
 
         // Configure Form
-        binder = new BeanValidationBinder<>(SamplePerson.class);
+        binder = new BeanValidationBinder<>(Participant.class);
 
         // Bind fields. This is where you'd define e.g. validation rules
 
@@ -117,18 +119,18 @@ public class ParticipantView extends Div implements BeforeEnterObserver {
 
         save.addClickListener(e -> {
             try {
-                if (this.samplePerson == null) {
-                    this.samplePerson = new SamplePerson();
+                if (this.participant == null) {
+                    this.participant = new Participant();
                 }
-                binder.writeBean(this.samplePerson);
+                binder.writeBean(this.participant);
 
-                samplePersonService.update(this.samplePerson);
+                participantService.update(this.participant);
                 clearForm();
                 refreshGrid();
-                Notification.show("SamplePerson details stored.");
+                Notification.show("Participant details stored.");
                 UI.getCurrent().navigate(ParticipantView.class);
             } catch (ValidationException validationException) {
-                Notification.show("An exception happened while trying to store the samplePerson details.");
+                Notification.show("An exception happened while trying to store the participant details.");
             }
         });
 
@@ -136,14 +138,14 @@ public class ParticipantView extends Div implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        Optional<UUID> samplePersonId = event.getRouteParameters().get(SAMPLEPERSON_ID).map(UUID::fromString);
-        if (samplePersonId.isPresent()) {
-            Optional<SamplePerson> samplePersonFromBackend = samplePersonService.get(samplePersonId.get());
-            if (samplePersonFromBackend.isPresent()) {
-                populateForm(samplePersonFromBackend.get());
+        Optional<UUID> participantId = event.getRouteParameters().get(PARTICIPANT_ID).map(UUID::fromString);
+        if (participantId.isPresent()) {
+            Optional<Participant> participantFromBackend = participantService.get(participantId.get());
+            if (participantFromBackend.isPresent()) {
+                populateForm(participantFromBackend.get());
             } else {
                 Notification.show(
-                        String.format("The requested samplePerson was not found, ID = %s", samplePersonId.get()), 3000,
+                        String.format("The requested participant was not found, ID = %s", participantId.get()), 3000,
                         Notification.Position.BOTTOM_START);
                 // when a row is selected but the data is no longer available,
                 // refresh grid
@@ -167,9 +169,11 @@ public class ParticipantView extends Div implements BeforeEnterObserver {
         email = new TextField("Email");
         phone = new TextField("Phone");
         dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new TextField("Occupation");
-        important = new Checkbox("Important");
-        Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth, occupation, important};
+        username = new TextField("Username");
+        password = new TextField("Password");
+        active = new Checkbox("Active");
+        Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth, username, password,
+                active};
 
         formLayout.add(fields);
         editorDiv.add(formLayout);
@@ -203,9 +207,9 @@ public class ParticipantView extends Div implements BeforeEnterObserver {
         populateForm(null);
     }
 
-    private void populateForm(SamplePerson value) {
-        this.samplePerson = value;
-        binder.readBean(this.samplePerson);
+    private void populateForm(Participant value) {
+        this.participant = value;
+        binder.readBean(this.participant);
 
     }
 }

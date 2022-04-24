@@ -1,10 +1,10 @@
-.settings-view {
+.organization-view {
   display: block;
   margin: 0 auto;
   max-width: 1024px;
   padding: 0 var(--lumo-space-l);
 }
-.settings-view .button-layout {
+.organization-view .button-layout {
   margin-bottom: var(--lumo-space-l);
   margin-top: var(--lumo-space-m);
 }

@@ -1,18 +1,21 @@
 package uz.maniac4j.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import javax.persistence.Entity;
 
 @Entity
-public class SamplePerson extends AbstractEntity {
+public class Participant extends AbstractEntity {
 
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
     private LocalDate dateOfBirth;
-    private String occupation;
-    private boolean important;
+    private String username;
+    @JsonIgnore
+    private String password;
+    private boolean active;
 
     public String getFirstName() {
         return firstName;
@@ -44,17 +47,23 @@ public class SamplePerson extends AbstractEntity {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    public String getOccupation() {
-        return occupation;
+    public String getUsername() {
+        return username;
     }
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public boolean isImportant() {
-        return important;
+    public String getPassword() {
+        return password;
     }
-    public void setImportant(boolean important) {
-        this.important = important;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
 }

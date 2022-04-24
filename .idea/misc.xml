@@ -7,11 +7,11 @@
         <option value="$PROJECT_DIR$/quiz-service/pom.xml" />
         <option value="$PROJECT_DIR$/organization-service/pom.xml" />
         <option value="$PROJECT_DIR$/participant-service/pom.xml" />
-        <option value="$PROJECT_DIR$/quiz-ui/pom.xml" />
         <option value="$PROJECT_DIR$/config/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-server/pom.xml" />
         <option value="$PROJECT_DIR$/hystrix/pom.xml" />
+        <option value="$PROJECT_DIR$/quiz-ui/pom.xml" />
       </list>
     </option>
   </component>
@@ -20,5 +20,10 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="jpab" />
+  </component>
+  <component name="SwUserDefinedSpecifications">
+    <option name="specTypeByUrl">
+      <map />
+    </option>
   </component>
 </project>

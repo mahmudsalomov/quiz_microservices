@@ -1,26 +1,26 @@
-.user-block-details-view {
+.test-proccess-view {
   display: block;
   height: 100%;
 }
 
-.user-block-details-view vaadin-grid {
+.test-proccess-view vaadin-grid {
   height: 100%;
   line-height: var(--lumo-line-height-m);
 }
 
-.user-block-details-view vaadin-grid,
-.user-block-details-view vaadin-grid-cell-content {
+.test-proccess-view vaadin-grid,
+.test-proccess-view vaadin-grid-cell-content {
   background-color: var(--lumo-contrast-10pct);
 }
 
-.user-block-details-view .card {
+.test-proccess-view .card {
   background-color: var(--lumo-base-color);
   border-radius: var(--lumo-border-radius);
   box-shadow: var(--lumo-box-shadow-xs);
   padding: calc(var(--lumo-space-s) * 1.5) var(--lumo-space-m);
 }
 
-.user-block-details-view img {
+.test-proccess-view img {
   border-radius: 50%;
   flex-shrink: 0;
   height: var(--lumo-size-m);
@@ -28,42 +28,42 @@
   width: var(--lumo-size-m);
 }
 
-.user-block-details-view .header {
+.test-proccess-view .header {
   align-items: baseline;
 }
 
-.user-block-details-view .name {
+.test-proccess-view .name {
   font-size: var(--lumo-font-size-s);
   font-weight: bold;
   margin-right: var(--lumo-space-s);
 }
 
-.user-block-details-view .date {
+.test-proccess-view .date {
   color: var(--lumo-tertiary-text-color);
   font-size: var(--lumo-font-size-xs);
 }
 
-.user-block-details-view .post {
+.test-proccess-view .post {
   color: var(--lumo-secondary-text-color);
   font-size: var(--lumo-font-size-s);
   margin-bottom: var(--lumo-space-s);
   white-space: normal;
 }
 
-.user-block-details-view .actions {
+.test-proccess-view .actions {
   align-items: center;
 }
 
-.user-block-details-view .icon {
+.test-proccess-view .icon {
   color: var(--lumo-tertiary-text-color);
   height: calc(var(--lumo-icon-size-s) * 0.8);
   margin-right: var(--lumo-space-s);
   width: calc(var(--lumo-icon-size-s) * 0.8);
 }
 
-.user-block-details-view .likes,
-.user-block-details-view .comments,
-.user-block-details-view .shares {
+.test-proccess-view .likes,
+.test-proccess-view .comments,
+.test-proccess-view .shares {
   color: var(--lumo-tertiary-text-color);
   font-size: var(--lumo-font-size-xs);
   margin-right: var(--lumo-space-l);

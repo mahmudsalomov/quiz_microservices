@@ -4,66 +4,54 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.checkbox.Checkbox;
-import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.data.renderer.LitRenderer;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import uz.maniac4j.data.entity.SamplePerson;
-import uz.maniac4j.data.service.SamplePersonService;
+import uz.maniac4j.data.entity.Category;
+import uz.maniac4j.data.service.CategoryService;
 import uz.maniac4j.views.MainLayout;
 
 @PageTitle("Category")
-@Route(value = "category/:samplePersonID?/:action?(edit)", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
-@Uses(Icon.class)
+@Route(value = "category/:categoryID?/:action?(edit)", layout = MainLayout.class)
 public class CategoryView extends Div implements BeforeEnterObserver {
 
-    private final String SAMPLEPERSON_ID = "samplePersonID";
-    private final String SAMPLEPERSON_EDIT_ROUTE_TEMPLATE = "category/%s/edit";
+    private final String CATEGORY_ID = "categoryID";
+    private final String CATEGORY_EDIT_ROUTE_TEMPLATE = "category/%s/edit";
 
-    private Grid<SamplePerson> grid = new Grid<>(SamplePerson.class, false);
+    private Grid<Category> grid = new Grid<>(Category.class, false);
 
-    private TextField firstName;
-    private TextField lastName;
-    private TextField email;
-    private TextField phone;
-    private DatePicker dateOfBirth;
-    private TextField occupation;
-    private Checkbox important;
+    private TextField name;
+    private TextField description;
+    private TextField organization;
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
-    private BeanValidationBinder<SamplePerson> binder;
+    private BeanValidationBinder<Category> binder;
 
-    private SamplePerson samplePerson;
+    private Category category;
 
-    private final SamplePersonService samplePersonService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public CategoryView(SamplePersonService samplePersonService) {
-        this.samplePersonService = samplePersonService;
+    public CategoryView(CategoryService categoryService) {
+        this.categoryService = categoryService;
         addClassNames("category-view");
 
         // Create UI
@@ -75,22 +63,10 @@ public class CategoryView extends Div implements BeforeEnterObserver {
         add(splitLayout);
 
         // Configure Grid
-        grid.addColumn("firstName").setAutoWidth(true);
-        grid.addColumn("lastName").setAutoWidth(true);
-        grid.addColumn("email").setAutoWidth(true);
-        grid.addColumn("phone").setAutoWidth(true);
-        grid.addColumn("dateOfBirth").setAutoWidth(true);
-        grid.addColumn("occupation").setAutoWidth(true);
-        LitRenderer<SamplePerson> importantRenderer = LitRenderer.<SamplePerson>of(
-                "<vaadin-icon icon='vaadin:${item.icon}' style='width: var(--lumo-icon-size-s); height: var(--lumo-icon-size-s); color: ${item.color};'></vaadin-icon>")
-                .withProperty("icon", important -> important.isImportant() ? "check" : "minus").withProperty("color",
-                        important -> important.isImportant()
-                                ? "var(--lumo-primary-text-color)"
-                                : "var(--lumo-disabled-text-color)");
-
-        grid.addColumn(importantRenderer).setHeader("Important").setAutoWidth(true);
-
-        grid.setItems(query -> samplePersonService.list(
+        grid.addColumn("name").setAutoWidth(true);
+        grid.addColumn("description").setAutoWidth(true);
+        grid.addColumn("organization").setAutoWidth(true);
+        grid.setItems(query -> categoryService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
@@ -98,7 +74,7 @@ public class CategoryView extends Div implements BeforeEnterObserver {
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                UI.getCurrent().navigate(String.format(SAMPLEPERSON_EDIT_ROUTE_TEMPLATE, event.getValue().getId()));
+                UI.getCurrent().navigate(String.format(CATEGORY_EDIT_ROUTE_TEMPLATE, event.getValue().getId()));
             } else {
                 clearForm();
                 UI.getCurrent().navigate(CategoryView.class);
@@ -106,7 +82,7 @@ public class CategoryView extends Div implements BeforeEnterObserver {
         });
 
         // Configure Form
-        binder = new BeanValidationBinder<>(SamplePerson.class);
+        binder = new BeanValidationBinder<>(Category.class);
 
         // Bind fields. This is where you'd define e.g. validation rules
 
@@ -119,18 +95,18 @@ public class CategoryView extends Div implements BeforeEnterObserver {
 
         save.addClickListener(e -> {
             try {
-                if (this.samplePerson == null) {
-                    this.samplePerson = new SamplePerson();
+                if (this.category == null) {
+                    this.category = new Category();
                 }
-                binder.writeBean(this.samplePerson);
+                binder.writeBean(this.category);
 
-                samplePersonService.update(this.samplePerson);
+                categoryService.update(this.category);
                 clearForm();
                 refreshGrid();
-                Notification.show("SamplePerson details stored.");
+                Notification.show("Category details stored.");
                 UI.getCurrent().navigate(CategoryView.class);
             } catch (ValidationException validationException) {
-                Notification.show("An exception happened while trying to store the samplePerson details.");
+                Notification.show("An exception happened while trying to store the category details.");
             }
         });
 
@@ -138,15 +114,14 @@ public class CategoryView extends Div implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        Optional<UUID> samplePersonId = event.getRouteParameters().get(SAMPLEPERSON_ID).map(UUID::fromString);
-        if (samplePersonId.isPresent()) {
-            Optional<SamplePerson> samplePersonFromBackend = samplePersonService.get(samplePersonId.get());
-            if (samplePersonFromBackend.isPresent()) {
-                populateForm(samplePersonFromBackend.get());
+        Optional<UUID> categoryId = event.getRouteParameters().get(CATEGORY_ID).map(UUID::fromString);
+        if (categoryId.isPresent()) {
+            Optional<Category> categoryFromBackend = categoryService.get(categoryId.get());
+            if (categoryFromBackend.isPresent()) {
+                populateForm(categoryFromBackend.get());
             } else {
-                Notification.show(
-                        String.format("The requested samplePerson was not found, ID = %s", samplePersonId.get()), 3000,
-                        Notification.Position.BOTTOM_START);
+                Notification.show(String.format("The requested category was not found, ID = %s", categoryId.get()),
+                        3000, Notification.Position.BOTTOM_START);
                 // when a row is selected but the data is no longer available,
                 // refresh grid
                 refreshGrid();
@@ -164,14 +139,10 @@ public class CategoryView extends Div implements BeforeEnterObserver {
         editorLayoutDiv.add(editorDiv);
 
         FormLayout formLayout = new FormLayout();
-        firstName = new TextField("First Name");
-        lastName = new TextField("Last Name");
-        email = new TextField("Email");
-        phone = new TextField("Phone");
-        dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new TextField("Occupation");
-        important = new Checkbox("Important");
-        Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth, occupation, important};
+        name = new TextField("Name");
+        description = new TextField("Description");
+        organization = new TextField("Organization");
+        Component[] fields = new Component[]{name, description, organization};
 
         formLayout.add(fields);
         editorDiv.add(formLayout);
@@ -205,9 +176,9 @@ public class CategoryView extends Div implements BeforeEnterObserver {
         populateForm(null);
     }
 
-    private void populateForm(SamplePerson value) {
-        this.samplePerson = value;
-        binder.readBean(this.samplePerson);
+    private void populateForm(Category value) {
+        this.category = value;
+        binder.readBean(this.category);
 
     }
 }

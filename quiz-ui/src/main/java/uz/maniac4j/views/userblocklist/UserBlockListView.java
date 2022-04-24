@@ -1,4 +1,4 @@
-package uz.maniac4j.views.user;
+package uz.maniac4j.views.userblocklist;
 
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasStyle;
@@ -13,32 +13,32 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import uz.maniac4j.views.MainLayout;
 
-@PageTitle("User")
-@Route(value = "user", layout = MainLayout.class)
-public class UserView extends Main implements HasComponents, HasStyle {
+@PageTitle("User Block List")
+@Route(value = "user-block-list", layout = MainLayout.class)
+public class UserBlockListView extends Main implements HasComponents, HasStyle {
 
     private OrderedList imageContainer;
 
-    public UserView() {
+    public UserBlockListView() {
         constructUI();
 
-        imageContainer.add(new UserViewCard("Snow mountains under stars",
+        imageContainer.add(new UserBlockListViewCard("Snow mountains under stars",
                 "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"));
-        imageContainer.add(new UserViewCard("Snow covered mountain",
+        imageContainer.add(new UserBlockListViewCard("Snow covered mountain",
                 "https://images.unsplash.com/photo-1512273222628-4daea6e55abb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"));
-        imageContainer.add(new UserViewCard("River between mountains",
+        imageContainer.add(new UserBlockListViewCard("River between mountains",
                 "https://images.unsplash.com/photo-1536048810607-3dc7f86981cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80"));
-        imageContainer.add(new UserViewCard("Milky way on mountains",
+        imageContainer.add(new UserBlockListViewCard("Milky way on mountains",
                 "https://images.unsplash.com/photo-1515705576963-95cad62945b6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80"));
-        imageContainer.add(new UserViewCard("Mountain with fog",
+        imageContainer.add(new UserBlockListViewCard("Mountain with fog",
                 "https://images.unsplash.com/photo-1513147122760-ad1d5bf68cdb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"));
-        imageContainer.add(new UserViewCard("Mountain at night",
+        imageContainer.add(new UserBlockListViewCard("Mountain at night",
                 "https://images.unsplash.com/photo-1562832135-14a35d25edef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=815&q=80"));
 
     }
 
     private void constructUI() {
-        addClassNames("user-view", "max-w-screen-lg", "mx-auto", "pb-l", "px-l");
+        addClassNames("user-block-list-view", "max-w-screen-lg", "mx-auto", "pb-l", "px-l");
 
         HorizontalLayout container = new HorizontalLayout();
         container.addClassNames("items-center", "justify-between");

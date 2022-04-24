@@ -1,4 +1,4 @@
-package uz.maniac4j.views.userblockdetails;
+package uz.maniac4j.views.testproccess;
 
 public class Person {
 

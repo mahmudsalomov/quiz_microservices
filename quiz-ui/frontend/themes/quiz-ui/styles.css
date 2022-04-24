@@ -1,0 +1,12 @@
+@import url('./main-layout.css');
+@import url('./views/organization-view.css');
+@import url('./views/category-view.css');
+@import url('./views/quiz-view.css');
+@import url('./views/block-view.css');
+@import url('./views/block-quizzes-view.css');
+@import url('./views/participant-view.css');
+@import url('./views/participant-block-view.css');
+@import url('./views/notification-view.css');
+@import url('./views/user-block-list-view.css');
+@import url('./views/test-proccess-view.css');
+@import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');

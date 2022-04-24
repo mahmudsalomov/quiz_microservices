@@ -1,26 +1,26 @@
-.participant-block-details-view {
+.notification-view {
   display: block;
   height: 100%;
 }
 
-.participant-block-details-view vaadin-grid {
+.notification-view vaadin-grid {
   height: 100%;
   line-height: var(--lumo-line-height-m);
 }
 
-.participant-block-details-view vaadin-grid,
-.participant-block-details-view vaadin-grid-cell-content {
+.notification-view vaadin-grid,
+.notification-view vaadin-grid-cell-content {
   background-color: var(--lumo-contrast-10pct);
 }
 
-.participant-block-details-view .card {
+.notification-view .card {
   background-color: var(--lumo-base-color);
   border-radius: var(--lumo-border-radius);
   box-shadow: var(--lumo-box-shadow-xs);
   padding: calc(var(--lumo-space-s) * 1.5) var(--lumo-space-m);
 }
 
-.participant-block-details-view img {
+.notification-view img {
   border-radius: 50%;
   flex-shrink: 0;
   height: var(--lumo-size-m);
@@ -28,42 +28,42 @@
   width: var(--lumo-size-m);
 }
 
-.participant-block-details-view .header {
+.notification-view .header {
   align-items: baseline;
 }
 
-.participant-block-details-view .name {
+.notification-view .name {
   font-size: var(--lumo-font-size-s);
   font-weight: bold;
   margin-right: var(--lumo-space-s);
 }
 
-.participant-block-details-view .date {
+.notification-view .date {
   color: var(--lumo-tertiary-text-color);
   font-size: var(--lumo-font-size-xs);
 }
 
-.participant-block-details-view .post {
+.notification-view .post {
   color: var(--lumo-secondary-text-color);
   font-size: var(--lumo-font-size-s);
   margin-bottom: var(--lumo-space-s);
   white-space: normal;
 }
 
-.participant-block-details-view .actions {
+.notification-view .actions {
   align-items: center;
 }
 
-.participant-block-details-view .icon {
+.notification-view .icon {
   color: var(--lumo-tertiary-text-color);
   height: calc(var(--lumo-icon-size-s) * 0.8);
   margin-right: var(--lumo-space-s);
   width: calc(var(--lumo-icon-size-s) * 0.8);
 }
 
-.participant-block-details-view .likes,
-.participant-block-details-view .comments,
-.participant-block-details-view .shares {
+.notification-view .likes,
+.notification-view .comments,
+.notification-view .shares {
   color: var(--lumo-tertiary-text-color);
   font-size: var(--lumo-font-size-xs);
   margin-right: var(--lumo-space-l);

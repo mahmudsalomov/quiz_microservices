@@ -1,4 +1,4 @@
-package uz.maniac4j.views.participantblockdetails;
+package uz.maniac4j.views.notification;
 
 public class Person {
 

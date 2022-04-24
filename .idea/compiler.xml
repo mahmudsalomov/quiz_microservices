@@ -14,7 +14,7 @@
         <module name="quiz-service" />
         <module name="organization-service" />
         <module name="gateway-server" />
-        <module name="quizui" />
+        <module name="quiz-ui" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

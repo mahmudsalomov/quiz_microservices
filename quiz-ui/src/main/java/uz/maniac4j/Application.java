@@ -17,8 +17,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *
  */
 @SpringBootApplication
-@Theme(value = "quizui", variant = Lumo.DARK)
-@PWA(name = "Quiz UI", shortName = "Quiz UI", offlineResources = {})
+@Theme(value = "quiz-ui", variant = Lumo.DARK)
+@PWA(name = "quiz-ui", shortName = "quiz-ui", offlineResources = {})
 @NpmPackage(value = "line-awesome", version = "1.3.0")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
