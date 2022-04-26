@@ -9,22 +9,22 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
 
 
-    @Bean
-    public RouteLocator myRoutes(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route(p -> p
-                        .path("/api/organization/**")
-                        .uri("lb://ORGANIZATION-SERVICE"))
-                .route(p -> p
-                        .path("/api/participant/**")
-                        .uri("lb://PARTICIPANT-SERVICE"))
-
-                .route(p -> p
-                        .path("/api/quiz/**")
-                        .uri("lb://QUIZ-SERVICE"))
-
-                .build();
-    }
+//    @Bean
+//    public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//                .route(p -> p
+//                        .path("/api/organization/**")
+//                        .uri("lb://ORGANIZATION-SERVICE"))
+//                .route(p -> p
+//                        .path("/api/participant/**")
+//                        .uri("lb://PARTICIPANT-SERVICE"))
+//
+//                .route(p -> p
+//                        .path("/api/quiz/**")
+//                        .uri("lb://QUIZ-SERVICE"))
+//
+//                .build();
+//    }
 
 
 //    @Bean
