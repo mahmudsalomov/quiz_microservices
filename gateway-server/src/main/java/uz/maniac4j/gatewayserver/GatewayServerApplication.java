@@ -3,14 +3,13 @@ package uz.maniac4j.gatewayserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import uz.maniac4j.gatewayserver.config.RedisHashComponent;
 import uz.maniac4j.gatewayserver.dto.ApiKey;
-import uz.maniac4j.gatewayserver.uti.AppConstants;
+import uz.maniac4j.gatewayserver.util.AppConstants;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -43,18 +42,17 @@ public class GatewayServerApplication {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(p -> p
+                .route(AppConstants.ORGANIZATION_SERVICE_KEY,p -> p
                         .path("/api/organization/**")
-                        .filters(f->f.stripPrefix(2))
+                        .filters(f->f.stripPrefix(0))
                         .uri("lb://ORGANIZATION-SERVICE"))
-                .route(p -> p
+                .route(AppConstants.PARTICIPANT_SERVICE_KEY,p -> p
                         .path("/api/participant/**")
-                        .filters(f->f.stripPrefix(2))
+                        .filters(f->f.stripPrefix(0))
                         .uri("lb://PARTICIPANT-SERVICE"))
-
-                .route(p -> p
+                .route(AppConstants.QUIZ_SERVICE_KEY,p -> p
                         .path("/api/quiz/**")
-                        .filters(f->f.stripPrefix(2))
+                        .filters(f->f.stripPrefix(0))
                         .uri("lb://QUIZ-SERVICE"))
 
                 .build();

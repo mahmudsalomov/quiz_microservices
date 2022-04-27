@@ -15,8 +15,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import uz.maniac4j.gatewayserver.config.RedisHashComponent;
 import uz.maniac4j.gatewayserver.dto.ApiKey;
-import uz.maniac4j.gatewayserver.uti.AppConstants;
-import uz.maniac4j.gatewayserver.uti.MapperUtils;
+import uz.maniac4j.gatewayserver.util.AppConstants;
+import uz.maniac4j.gatewayserver.util.MapperUtils;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class AuthFilter implements GlobalFilter , Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         List<String> apiKeyHeader=exchange.getRequest().getHeaders().get("gatewaykey");
+        System.out.println(apiKeyHeader);
         log.info("api key {} ",apiKeyHeader);
         Route route=exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR);
         String routeId=route!=null? route.getId() : null;
@@ -49,7 +50,8 @@ public class AuthFilter implements GlobalFilter , Ordered {
         Object apiKeyObject=redisHashComponent.hGet(AppConstants.RECORD_KEY, apiKey);
         if(apiKeyObject!=null){
             ApiKey key= MapperUtils.objectMapper(apiKeyObject, ApiKey.class);
-            return key.getServices().contains(routeId);
+            boolean check=key.getServices().contains(routeId);
+            return check;
         }else{
             return false;
         }

@@ -1,4 +1,4 @@
-package uz.maniac4j.gatewayserver.uti;
+package uz.maniac4j.gatewayserver.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.experimental.UtilityClass;
 
