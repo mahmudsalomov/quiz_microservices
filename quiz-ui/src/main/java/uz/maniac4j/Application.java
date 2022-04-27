@@ -32,12 +32,6 @@ public class Application extends SpringBootServletInitializer implements AppShel
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    @LoadBalanced
-    public RestTemplate getRestTemplate(){
-        HttpComponentsClientHttpRequestFactory httpRequestFactory=new HttpComponentsClientHttpRequestFactory();
-        httpRequestFactory.setConnectTimeout(3000);
-        return new RestTemplate(httpRequestFactory);
-    }
+
 
 }
