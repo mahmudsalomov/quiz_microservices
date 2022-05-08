@@ -47,4 +47,13 @@ public class QuizController {
     public Quiz editQuiz(@RequestBody Quiz quiz){
         return service.edit(quiz);
     }
+
+
+
+    @GetMapping("/check")
+    public Boolean check(@RequestParam Long quizId, @RequestParam Long answerId){
+        return service.check(quizId,answerId);
+    }
+
+
 }

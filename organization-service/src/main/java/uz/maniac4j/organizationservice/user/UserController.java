@@ -4,6 +4,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.maniac4j.organizationservice.security.CurrentUser;
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/organization/user")
 public class UserController {
@@ -15,8 +16,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public HttpEntity<?> register(@RequestBody User user){
-        return userService.register(user).response();
+    public HttpEntity<?> register(@RequestBody RegistrationDto dto){
+        return userService.register(dto).response();
     }
 
 

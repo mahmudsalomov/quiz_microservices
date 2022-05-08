@@ -39,7 +39,7 @@ public class AnswerService {
     }
     public Answer edit(Answer answer){
         if (answer.getId() == null) return null;
-            Optional<Answer> update = answerRepository.findById(answer.getId());
+        Optional<Answer> update = answerRepository.findById(answer.getId());
         if (update.isPresent()){
             Answer answers = update.get();
             answer.edited(answer);

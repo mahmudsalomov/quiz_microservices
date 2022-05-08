@@ -9,7 +9,20 @@ management:
 
 
 spring:
-#  cloud:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+
+  #  cloud:
 #    gateway:
 #      routes:
 #        - id: quiz-service

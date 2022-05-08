@@ -31,4 +31,11 @@ public class AuthController {
 //        return ResponseEntity.ok(true);
     }
 
+
+    @GetMapping("/check")
+    public boolean check(@CurrentUser User user){
+        System.out.println(user);
+        return user != null;
+//        return ResponseEntity.ok(true);
+    }
 }

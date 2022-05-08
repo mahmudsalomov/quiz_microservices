@@ -87,4 +87,18 @@ public class QuizService {
         }
         return null;
     }
+
+    public Boolean check(Long quizId, Long answerId) {
+        try {
+            Optional<Quiz> quiz = quizRepository.findById(quizId);
+            if (quiz.isPresent()){
+                return quiz.get().getRight_answer_id().equals(answerId);
+            }
+            return null;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }
