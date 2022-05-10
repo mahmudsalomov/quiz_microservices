@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/quiz/category")
+@CrossOrigin
 public class CategoryController {
 
     private final CategoryService service;
